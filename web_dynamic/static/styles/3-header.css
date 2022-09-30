@@ -13,11 +13,12 @@ header #api_status {
     float: right;
     height: 40px;
     width: 40px;
-    border-radius: 100%;
+    border-radius: 50%;
     background-color: #CCCCCC;
     margin-right: 30px;
-    margin-top: 15px;
+    margin-top: -55px;
 }
+
 #api_status.available {
-    background-color: #FF545F;
+    background-color: #ff545f;
 }
