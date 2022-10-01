@@ -34,11 +34,11 @@ $(document).ready(function () {
   });
 
   getPlaces(Object.keys(amenityDict));
-  
-  function getPlaces(amenityIds) {
-    let data = '{}'
+
+  function getPlaces (amenityIds) {
+    let data = '{}';
     if (amenityIds.length > 0) {
-      data = JSON.stringify({ 'amenities': amenityIds })
+      data = JSON.stringify({ amenities: amenityIds });
     }
     const placesUrl = 'http://' + window.location.hostname + ':5001/api/v1/places_search/';
     $.ajax({
