@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let amenityDict = {}
+  const amenityDict = {};
   $('input:checkbox').change(function () {
     if ($(this).is(':checked')) {
       amenityDict[$(this).attr('data-id')] = $(this).attr('data-name');

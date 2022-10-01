@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  const url='http://' + location.hostname + ':5001/api/v1/status/';
+  const url = 'http://' + window.location.hostname + ':5001/api/v1/status/';
   $.get(url, function (data) {
     if (data.status === 'OK') {
       $('div#api_status').addClass('available');
@@ -8,24 +8,24 @@ $(document).ready(function () {
     }
   });
 
-function getUsername (userId) {
-  const url='http://' + location.hostname + ':5001/api/v1/users/' + userId;
-  let userName = '';
-  $.ajax({
-    url: url,
-    type: 'get',
-    dataType: 'json',
-    async: false,
-    success: function (response) {
-      userName = response.first_name + ' ' + response.last_name;
-    }
-  });
-  return userName;
-}
+  function getUsername (userId) {
+    const url = 'http://' + window.location.hostname + ':5001/api/v1/users/' + userId;
+    let userName = '';
+    $.ajax({
+      url: url,
+      type: 'get',
+      dataType: 'json',
+      async: false,
+      success: function (response) {
+        userName = response.first_name + ' ' + response.last_name;
+      }
+    });
+    return userName;
+  }
 
-  const places_url='http://' + location.hostname + ':5001/api/v1/places_search/';
+  const placesUrl = 'http://' + window.location.hostname + ':5001/api/v1/places_search/';
   $.ajax({
-    url: places_url,
+    url: placesUrl,
     type: 'POST',
     contentType: 'application/json',
     dataType: 'json',
@@ -34,23 +34,23 @@ function getUsername (userId) {
       for (const place of places) {
         const name = place.name;
         const price = place.price_by_night;
-        const max_guest = place.max_guest;
-        const number_rooms = place.number_rooms;
-        const number_bathrooms = place.number_bathrooms;
+        const maxGuest = place.max_guest;
+        const numberRooms = place.number_rooms;
+        const numberBathrooms = place.number_bathrooms;
         const owner = getUsername(place.user_id);
         console.log(owner);
         console.log(place.user_id);
         const description = place.description;
-        const place_Html = `
+        const placeHtml = `
           <article>
             <div class="title_box">
               <h2>${name}</h2>
               <div class="price_by_night">$${price}</div>
             </div>
             <div class="information">
-              <div class="max_guest">${max_guest} ${max_guest > 1 ? 'Guests' : 'Guest'}</div>
-              <div class="number_rooms">${number_rooms} ${number_rooms > 1 ? 'Bedrooms' : 'Bedroom'}</div>
-              <div class="number_bathrooms">${number_bathrooms} ${number_bathrooms > 1 ? 'Bathrooms' : 'Bathroom'}</div>
+              <div class="max_guest">${maxGuest} ${maxGuest > 1 ? 'Guests' : 'Guest'}</div>
+              <div class="number_rooms">${numberRooms} ${numberRooms > 1 ? 'Bedrooms' : 'Bedroom'}</div>
+              <div class="number_bathrooms">${numberBathrooms} ${numberBathrooms > 1 ? 'Bathrooms' : 'Bathroom'}</div>
             </div>
             <div class="user">
               <b>Owner:</b> ${owner}
@@ -58,13 +58,13 @@ function getUsername (userId) {
             <div class="description">${description}</div>
           </article>
         `;
-        $('section.places').append(place_Html);
+        $('section.places').append(placeHtml);
       }
     }
   });
 
-  let amenityDict = {}
-  $('input:checkbox').change (function () {
+  const amenityDict = {};
+  $('input:checkbox').change(function () {
     if ($(this).is(':checked')) {
       amenityDict[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
