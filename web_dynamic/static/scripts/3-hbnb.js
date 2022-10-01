@@ -38,8 +38,6 @@ $(document).ready(function () {
         const numberRooms = place.number_rooms;
         const numberBathrooms = place.number_bathrooms;
         const owner = getUsername(place.user_id);
-        console.log(owner);
-        console.log(place.user_id);
         const description = place.description;
         const placeHtml = `
           <article>
